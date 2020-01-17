@@ -4,7 +4,14 @@ void main() => runApp(MaterialApp(
       home: NinjaCard(),
     ));
 
-class NinjaCard extends StatelessWidget {
+class NinjaCard extends StatefulWidget {
+  @override
+  _NinjaCardState createState() => _NinjaCardState();
+}
+
+class _NinjaCardState extends State<NinjaCard> {
+  int ninjaLevel = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,6 +22,15 @@ class NinjaCard extends StatelessWidget {
         backgroundColor: Colors.grey[850],
         elevation: 0.0,
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          setState(() {
+            ninjaLevel++;
+          });
+        },
+        child: Icon(Icons.add),
+        backgroundColor: Colors.grey[800],
+      ),
       body: Padding(
         padding: EdgeInsets.fromLTRB(30.0, 40.0, 30.0, 0.0),
         child: Column(
@@ -22,9 +38,8 @@ class NinjaCard extends StatelessWidget {
           children: <Widget>[
             Center(
               child: CircleAvatar(
-                backgroundImage: AssetImage('assets/picture.jpg'),
-                radius: 40.0
-              ),
+                  backgroundImage: AssetImage('assets/picture.jpg'),
+                  radius: 40.0),
             ),
             Divider(
               height: 90.0,
@@ -46,7 +61,7 @@ class NinjaCard extends StatelessWidget {
                 style: TextStyle(color: Colors.grey, letterSpacing: 2.0)),
             SizedBox(height: 10.0),
             Text(
-              '21',
+              '$ninjaLevel',
               style: TextStyle(
                   color: Colors.amberAccent[200],
                   letterSpacing: 2.0,
@@ -59,13 +74,14 @@ class NinjaCard extends StatelessWidget {
                 Icons.email,
                 color: Colors.grey[400],
               ),
-              SizedBox(width: 10.0,),
+              SizedBox(
+                width: 10.0,
+              ),
               Text('gm_benbakhta@esi.dz',
                   style: TextStyle(
                       color: Colors.grey[400],
                       fontSize: 18.0,
                       letterSpacing: 1.0))
-                     
             ]),
           ],
         ),
